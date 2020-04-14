@@ -40,12 +40,6 @@ function shoppingCartSize(){
     return shoppingCart.length;
 }
 
-function printShoppingCart(){
-    for(let i = 0; i < shoppingCart.length; i++){
-        console.log(shoppingCart[i]['name'])
-    }
-}
-
 function addItemToShoppingCart(item){
     shoppingCart.push(item)
 }
@@ -65,6 +59,5 @@ module.exports = {
   createItem,
   getShoppingCart,
   addItemToShoppingCart,
-  shoppingCartSize,
-  printShoppingCart
+  shoppingCartSize
 }

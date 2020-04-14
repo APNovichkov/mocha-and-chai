@@ -3,6 +3,12 @@ const chai = require("chai")
 const utils = require("../utils")
 const expect = chai.expect
 
+
+beforeEach(() => {
+    utils.clearCart();
+});
+
+
 // ========================================================
 // NOTE: https://mochajs.org/#arrow-functions
 // Passing arrow functions (“lambdas”) to Mocha is discouraged.
@@ -56,15 +62,11 @@ it("Should create a new (object) Item with name and price", () => {
 
 
 it("Should return an array containing all items in cart", () => {
-    utils.clearCart()
-
     let shoppingCart = utils.getShoppingCart()
     expect(shoppingCart.length).to.equal(0)
 })
 
 it("Should add a new item to the shopping cart", () => {
-    utils.clearCart()
-
     const item1 = utils.createItem("apple", 4.99)
     const item2 = utils.createItem("carrot", 10.99)
 
@@ -87,8 +89,6 @@ it("Should add a new item to the shopping cart", () => {
 })
 
 it("Should return the number of items in the cart", () => {
-    utils.clearCart()
-
     const item1 = utils.createItem("apple", 4.99)
     const item2 = utils.createItem("carrot", 10.99)
 
@@ -100,8 +100,6 @@ it("Should return the number of items in the cart", () => {
 })
 
 it("Should remove items from cart", () => {
-    utils.clearCart()
-
     const item1 = utils.createItem("apple", 4.99)
     const item2 = utils.createItem("carrot", 10.99)
 

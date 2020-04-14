@@ -9,12 +9,6 @@ beforeEach(() => {
 });
 
 
-// ========================================================
-// NOTE: https://mochajs.org/#arrow-functions
-// Passing arrow functions (“lambdas”) to Mocha is discouraged.
-// Lambdas lexically bind this and cannot access the Mocha context.
-// ========================================================
-
 it("should say hello", function() {
   const hello = utils.sayHello()
   expect(hello).to.be.a("string")
@@ -26,19 +20,19 @@ it("should say hello", function() {
 // Level 1 Challenges
 // ========================================================
 
-it("should return the area of a 5 by 6 rectangle", () => {
+it("should return the area of a 5 by 6 rectangle", function() {
     const area = utils.area(5, 6)
     expect(area).to.be.a("number")
     expect(area).to.equal(30)
 })
 
-it("should return the perimeter of a 5 by 6 rectangle", () => {
+it("should return the perimeter of a 5 by 6 rectangle", function() {
     const area = utils.perimeter(5, 6)
     expect(area).to.be.a("number")
     expect(area).to.equal(22)
 })
 
-it("should return the area of a circle of radius 5", () => {
+it("should return the area of a circle of radius 5", function() {
     const area = utils.circleArea(5)
     expect(area).to.be.a("number")
     expect(area).to.equal(Math.PI * 25)
@@ -52,7 +46,7 @@ it("should return the area of a circle of radius 5", () => {
 // tests eventually.
 // ========================================================
 
-it("Should create a new (object) Item with name and price", () => {
+it("Should create a new (object) Item with name and price", function() {
     const item = utils.createItem("apple", 4.99)
     expect(item).to.be.a("object")
     expect(item).to.have.property("name", "apple")
@@ -61,12 +55,12 @@ it("Should create a new (object) Item with name and price", () => {
 })
 
 
-it("Should return an array containing all items in cart", () => {
+it("Should return an array containing all items in cart", function() {
     let shoppingCart = utils.getShoppingCart()
     expect(shoppingCart.length).to.equal(0)
 })
 
-it("Should add a new item to the shopping cart", () => {
+it("Should add a new item to the shopping cart", function() {
     const item1 = utils.createItem("apple", 4.99)
     const item2 = utils.createItem("carrot", 10.99)
 
@@ -88,7 +82,7 @@ it("Should add a new item to the shopping cart", () => {
     expect(shoppingCart[1]).to.have.property("quantity", 1)
 })
 
-it("Should return the number of items in the cart", () => {
+it("Should return the number of items in the cart", function() {
     const item1 = utils.createItem("apple", 4.99)
     const item2 = utils.createItem("carrot", 10.99)
 
@@ -103,11 +97,9 @@ it("Should remove items from cart", () => {
     const item1 = utils.createItem("apple", 4.99)
     const item2 = utils.createItem("carrot", 10.99)
 
-    expect(utils.shoppingCartSize()).to.equal(0)
     utils.addItemToShoppingCart(item1)
-    expect(utils.shoppingCartSize()).to.equal(1)
     utils.addItemToShoppingCart(item2)
-    expect(utils.shoppingCartSize()).to.equal(2)
+    utils.addItemToShoppingCart(item2)
 
     utils.clearCart()
     expect(utils.shoppingCartSize()).to.equal(0)
@@ -119,8 +111,41 @@ it("Should remove items from cart", () => {
 // Stretch Challenges
 // ========================================================
 
-it("Should update the count of items in the cart")
+it("Should update the count of items in the cart", function() {
+    const item1 = utils.createItem("apple", 4.99)
+    const item2 = utils.createItem("carrot", 10.99)
 
-it("Should validate that an empty cart has 0 items")
+    utils.addItemToShoppingCart(item1)
+    utils.addItemToShoppingCart(item2)
 
-it("Should return the total cost of all items in the cart")
+    const shoppingCart = utils.getShoppingCart()
+
+    expect(shoppingCart[0]['quantity']).to.equal(1)
+    expect(shoppingCart[1]['quantity']).to.equal(1)
+
+    utils.incrementQuantity()
+    expect(shoppingCart[0]['quantity']).to.equal(2)
+    expect(shoppingCart[1]['quantity']).to.equal(2)
+})
+
+it("Should validate that an empty cart has 0 items", function() {
+    const item1 = utils.createItem("apple", 4.99)
+    const item2 = utils.createItem("carrot", 10.99)
+
+    utils.addItemToShoppingCart(item1)
+    utils.addItemToShoppingCart(item2)
+    utils.addItemToShoppingCart(item2)
+
+    utils.clearCart()
+    expect(utils.shoppingCartSize()).to.equal(0)
+})
+
+it("Should return the total cost of all items in the cart", function() {
+    const item1 = utils.createItem("apple", 4.99)
+    const item2 = utils.createItem("carrot", 10.99)
+
+    utils.addItemToShoppingCart(item1)
+    utils.addItemToShoppingCart(item2)
+
+    expect(utils.getTotalCost()).to.equal(15.98)
+})

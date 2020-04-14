@@ -40,6 +40,20 @@ function shoppingCartSize(){
     return shoppingCart.length;
 }
 
+function incrementQuantity(){
+    for(let i = 0; i < shoppingCart.length; i++){
+        shoppingCart[i]['quantity'] += 1
+    }
+}
+
+function getTotalCost(){
+    let totalCost = 0;
+    for(let i = 0; i < shoppingCart.length; i++){
+        totalCost += shoppingCart[i]['price']
+    }
+    return totalCost
+}
+
 function addItemToShoppingCart(item){
     shoppingCart.push(item)
 }
@@ -59,5 +73,7 @@ module.exports = {
   createItem,
   getShoppingCart,
   addItemToShoppingCart,
-  shoppingCartSize
+  shoppingCartSize,
+  incrementQuantity,
+  getTotalCost
 }

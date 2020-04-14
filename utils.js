@@ -25,9 +25,46 @@ const circleArea = r => {
 // defined) in order to make the tests pass.
 // ========================================================
 
+shoppingCart = []
+
+function createItem(name, price){
+    // Return JSON object of the item
+    return { name, price, quantity: 1 }
+}
+
+function getShoppingCart(){
+    return shoppingCart
+}
+
+function shoppingCartSize(){
+    return shoppingCart.length;
+}
+
+function printShoppingCart(){
+    for(let i = 0; i < shoppingCart.length; i++){
+        console.log(shoppingCart[i]['name'])
+    }
+}
+
+function addItemToShoppingCart(item){
+    shoppingCart.push(item)
+}
+
+function clearCart(){
+    shoppingCart = []
+}
 
 
 
-module.exports = { 
-  sayHello, area, perimeter, circleArea
+module.exports = {
+  sayHello,
+  area,
+  perimeter,
+  circleArea,
+  clearCart,
+  createItem,
+  getShoppingCart,
+  addItemToShoppingCart,
+  shoppingCartSize,
+  printShoppingCart
 }

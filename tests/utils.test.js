@@ -4,8 +4,9 @@ const utils = require("../utils")
 const expect = chai.expect
 
 
-beforeEach(() => {
+beforeEach((done) => {
     utils.clearCart();
+    done()
 });
 
 

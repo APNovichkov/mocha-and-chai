@@ -62,6 +62,9 @@ function clearCart(){
     shoppingCart = []
 }
 
+const celsiusToFahrenheit = (celsius) => {
+    return celsius * 9 / 5 + 32
+}
 
 
 module.exports = {
@@ -75,5 +78,6 @@ module.exports = {
   addItemToShoppingCart,
   shoppingCartSize,
   incrementQuantity,
-  getTotalCost
+  getTotalCost,
+  celsiusToFahrenheit
 }

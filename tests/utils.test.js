@@ -149,3 +149,14 @@ it("Should return the total cost of all items in the cart", function() {
 
     expect(utils.getTotalCost()).to.equal(15.98)
 })
+
+// Warmup for lesson
+
+it("Should give me fahrenheit from celcius", function() {
+    const celcius = 10
+
+    fahrenheit = utils.celsiusToFahrenheit(celcius)
+
+    expect(fahrenheit).to.be.a("number")
+    expect(fahrenheit).to.equal(50)
+})
